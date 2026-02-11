@@ -1,0 +1,212 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Marjiorie ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+background:#ffd1dc;
+overflow:hidden;
+}
+
+/* Pantalla inicial */
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#ffd1dc;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:20;
+text-align:center;
+}
+
+.intro button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:#e75480;
+color:white;
+font-size:18px;
+margin-top:20px;
+}
+
+/* Contenido principal */
+.main{
+display:none;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+max-width:380px;
+width:90%;
+z-index:5;
+}
+
+h1{ color:#e75480; }
+
+.foto{
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #ffd1dc;
+margin:15px 0;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+font-size:16px;
+cursor:pointer;
+margin:8px;
+}
+
+#si{
+background:#e75480;
+color:white;
+}
+
+#no{
+background:#ddd;
+position:relative;
+}
+
+.mensaje{
+display:none;
+color:#e75480;
+font-size:20px;
+margin-top:15px;
+}
+
+.countdown{
+color:#e75480;
+margin-top:10px;
+}
+
+/* Corazones */
+.heart{
+position:fixed;
+top:-10px;
+animation: caer linear infinite;
+}
+
+@keyframes caer{
+0%{ transform:translateY(-10px); opacity:1;}
+100%{ transform:translateY(110vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Pantalla inicial -->
+<div class="intro" id="intro">
+<h1>❤️ MARYO ❤️</h1>
+<p>Tengo algo especial para ti…</p>
+<button onclick="entrar()">Abrir Sorpresa 💌</button>
+</div>
+
+<!-- Contenido principal -->
+<div class="main" id="main">
+
+<audio id="musica" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+
+<div class="card">
+
+<h1>Para Mamor ❤️</h1>
+
+<img class="foto" src="https://i.imgur.com/mVwVVu1.png">
+
+<p>De: <b>Luis 💖</b></p>
+
+<p>¿Quieres ser mi 14 de Febrero? 🌹</p>
+
+<div class="countdown" id="countdown"></div>
+
+<button id="si" onclick="aceptar()">Sí 💖</button>
+<button id="no" onmouseover="moverNo()">No 😢</button>
+
+<div class="mensaje" id="mensaje">
+💍 Prometo hacer este día inolvidable 💕<br>
+Te quiero mucho Mi Diosa Hermosa ❤️
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* Entrar a la página */
+function entrar(){
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="flex";
+document.getElementById("musica").play();
+}
+
+/* Botón SI */
+function aceptar(){
+document.getElementById("mensaje").style.display="block";
+}
+
+/* Botón NO huye */
+function moverNo(){
+let b=document.getElementById("no");
+b.style.position="absolute";
+b.style.left=Math.random()*80+"%";
+b.style.top=Math.random()*80+"%";
+}
+
+/* Corazones */
+function crearCorazon(){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+10)+"px";
+h.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+}
+setInterval(crearCorazon,300);
+
+/* Cuenta regresiva */
+function countdown(){
+let ahora=new Date();
+let año=ahora.getFullYear();
+let destino=new Date(año,1,14);
+if(ahora>destino){ destino=new Date(año+1,1,14); }
+
+let diff=destino-ahora;
+
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor(diff/(1000*60*60)%24);
+let m=Math.floor(diff/(1000*60)%60);
+let s=Math.floor(diff/1000%60);
+
+document.getElementById("countdown").innerHTML=
+"⏳ Faltan: "+d+"d "+h+"h "+m+"m "+s+"s";
+}
+setInterval(countdown,1000);
+
+</script>
+
+</body>
+</html>
